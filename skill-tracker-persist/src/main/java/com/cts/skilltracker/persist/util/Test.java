@@ -2,6 +2,8 @@ package com.cts.skilltracker.persist.util;
 
 import com.cts.skilltracker.persist.apimodel.ProfileRequest;
 import com.cts.skilltracker.persist.apimodel.SkillRequest;
+import com.cts.skilltracker.persist.apimodel.UserRequest;
+import com.cts.skilltracker.persist.entity.UserEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Arrays;
@@ -37,6 +39,15 @@ public class Test {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String str = mapper.writeValueAsString(request);
+            System.out.println(str);
+        } catch (Exception e) {
+
+        }
+        
+        UserRequest user = new UserRequest("firstname", "lastname", "emailAddress", "username", "password");
+        UserEntity entity = user.toUser();
+        try {
+            String str = mapper.writeValueAsString(entity);
             System.out.println(str);
         } catch (Exception e) {
 

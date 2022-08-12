@@ -4,6 +4,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -34,7 +35,7 @@ public class UserRegisterController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "User Created Successfully"),
 			@ApiResponse(code = 400, message = "Invalid User details") })
 	@PostMapping(value = "/createUser")
-	public ResponseDTO createProfile(@Valid @RequestBody UserRequest request) {
+	public ResponseDTO createUser(@Valid @RequestBody UserRequest request) {
 		log.info("User= " + request.toString());
 		userService.createUser(request);
 		return new ResponseDTO("Created", HttpStatus.CREATED);
@@ -44,7 +45,8 @@ public class UserRegisterController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "User updated Successfully"),
 			@ApiResponse(code = 400, message = "Invalid User details") })
 	@PutMapping(value = "/updateUser/{id}")
-	public ResponseDTO updateProfile(@PathVariable String id, @Valid @RequestBody UserRequest request) {
+	@PreAuthorize("hasAuthority('ADMIN_PRIVILEGE')")
+	public ResponseDTO updateUser(@PathVariable String id, @Valid @RequestBody UserRequest request) {
 		log.info("User= " + request.toString());
 		userService.updateUser(id, request);
 		return new ResponseDTO("Updated", HttpStatus.OK);
