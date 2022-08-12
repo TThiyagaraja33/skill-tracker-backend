@@ -19,27 +19,30 @@ public class KafkaConsumer {
 	
 	@Value("${topic.user.consumer}")
 	private String userTopicName;
+	
+	@Value("${topic.delete.consumer}")
+	private String deleteTopicName;
 
 	@Autowired
 	private ConsumerService consumerService;
 
 	@KafkaListener(topics = "${topic.name.consumer}", groupId = "group_id")
-	public void consumeMessage(ConsumerRecord<String, String> payload) {
+	public void consumeProfileMessage(ConsumerRecord<String, String> payload) {
 		log.info("Topic: {}", profileTopicName);
 		log.info("payload: {}", payload.value());
 		consumerService.saveProfile(payload.value());
 	}
 	
 	@KafkaListener(topics = "${topic.user.consumer}", groupId = "group_id")
-	public void consumeMessage1(ConsumerRecord<String, String> payload) {
+	public void consumeUserMessage(ConsumerRecord<String, String> payload) {
 		log.info("Topic: {}", userTopicName);
 		log.info("payload: {}", payload.value());
 		consumerService.saveUser(payload.value());
 	}
 	
 	@KafkaListener(topics = "${topic.delete.consumer}", groupId = "group_id")
-	public void consumeMessage2(ConsumerRecord<String, String> payload) {
-		log.info("Topic: {}", profileTopicName);
+	public void consumeDeleteMessage(ConsumerRecord<String, String> payload) {
+		log.info("Topic: {}", deleteTopicName);
 		log.info("payload: {}", payload.value());
 		consumerService.deleteProfile(payload.value());
 	}

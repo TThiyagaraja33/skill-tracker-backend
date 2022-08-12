@@ -1,0 +1,28 @@
+server:
+  port: 5002
+  
+spring:
+  data:
+    mongodb:
+      database: engineerprofile
+      port: 27017
+      host: localhost
+      
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+      
+  main:
+    allow-bean-definition-overriding: true
+    
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+    
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: skilltrackerSigningKey

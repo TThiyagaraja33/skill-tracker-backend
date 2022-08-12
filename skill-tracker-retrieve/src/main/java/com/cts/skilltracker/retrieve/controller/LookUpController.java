@@ -39,15 +39,11 @@ public class LookUpController {
 	public ResponseEntity<List<Profile>> getProfile(@PathVariable String criteria, @PathVariable String criteriaValue) {
 		log.info("Criteria= {}", criteria);
 		log.info("Criteria Value= {}", criteriaValue);
-		try {
-			List<Profile> profileList = lookUpService.getEngineerProfiles(criteria, criteriaValue);
-			if (CollectionUtils.isEmpty(profileList)) {
-				return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
-			}
-			return new ResponseEntity<>(profileList, HttpStatus.OK);
-		} catch (Exception e) {
-			log.error("Failed to complete get employees by holder request!:", e);
-			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.INTERNAL_SERVER_ERROR);
+
+		List<Profile> profileList = lookUpService.getEngineerProfiles(criteria, criteriaValue);
+		if (CollectionUtils.isEmpty(profileList)) {
+			return new ResponseEntity<>(new ArrayList<>(), HttpStatus.NO_CONTENT);
 		}
+		return new ResponseEntity<>(profileList, HttpStatus.OK);
 	}
 }

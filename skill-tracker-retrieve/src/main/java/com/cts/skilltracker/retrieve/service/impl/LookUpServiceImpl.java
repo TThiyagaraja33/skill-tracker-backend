@@ -99,8 +99,13 @@ public class LookUpServiceImpl implements LookUpService {
 						.sorted(Comparator.comparingInt(Skill::getExpertiseLevel).reversed())
 						.collect(Collectors.toList()));
 			}
-			list.add(response);
+			if (!(CollectionUtils.isEmpty(response.getTechnicalSkills())
+					&& CollectionUtils.isEmpty(response.getNonTechnicalSkills())))
+				list.add(response);
 		});
-		return list;
+		if (!CollectionUtils.isEmpty(list))
+			return list;
+		else
+			throw new ProfileNotFoundException("Profile Not Found the requested parameter");
 	}
 }

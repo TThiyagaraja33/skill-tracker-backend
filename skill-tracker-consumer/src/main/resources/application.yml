@@ -1,0 +1,39 @@
+server:
+  port: 5001
+
+spring:
+  data:
+    mongodb:
+      host: host.docker.internal
+      port: 27017
+      database: engineerprofile
+  kafka:
+    bootstrap-servers:
+      - kafka:9092
+    consumer:
+      group-id: group_id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: '*'
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+      
+topic:
+  name:
+    consumer: topicProfile
+  user:
+    consumer: topicUser
+  delete:
+    consumer: deleteProfile
+
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: skilltrackerSigningKey

@@ -1,0 +1,135 @@
+services:
+  mysql:
+    image: "mysql:8.0"
+    ports:
+      - 3307:3306
+    restart: always
+    environment:
+      MYSQL_DATABASE: engineerprofile
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: root@123
+    networks:
+      - skilltrackerNet
+
+  mongo:
+    image: "mongo:4.4.3"
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - skilltrackerNet
+
+  zookeeper:
+    container_name:
+      zookeeper_merge
+    image:
+      wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    networks:
+      - skilltrackerNet
+  kafka:
+    container_name:
+      kafka_merge
+    image:
+      wurstmeister/kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - skilltrackerNet
+
+  skill-tracker-api-gateway:
+    container_name: skill-tracker-api-gateway
+    hostname: skill-tracker-api-gateway
+    image: tthiyagaraja/api-gateway
+    build: ./skill-tracker-api-gateway
+    restart: always
+    ports:
+      - 4000:4000
+    networks:
+      - skilltrackerNet
+
+  skill-tracker-oauth2:
+    container_name: skill-tracker-oauth2
+    hostname: skill-tracker-oauth2
+    image: tthiyagaraja/oauth2
+    build: ./skill-tracker-oauth2
+    restart: always
+    ports:
+      - 5003:5003
+    networks:
+      - skilltrackerNet
+
+  skill-tracker-persist:
+    container_name: skill-tracker-persist
+    hostname: skill-tracker-persist
+    image: tthiyagaraja/persist
+    build: ./skill-tracker-persist
+    restart: always
+    ports:
+      - 5000:5000
+    depends_on:
+      - skill-tracker-api-gateway
+      - skill-tracker-oauth2
+      - mysql
+      - kafka
+    networks:
+      - skilltrackerNet
+
+  skill-tracker-consumer:
+    container_name: skill-tracker-consumer
+    hostname: skill-tracker-consumer
+    image: tthiyagaraja/consumer
+    build: ./skill-tracker-consumer
+    restart: always
+    ports:
+      - 5001:5001
+    depends_on:
+      - skill-tracker-api-gateway
+      - skill-tracker-oauth2
+      - skill-tracker-persist
+      - mongo
+      - kafka
+    networks:
+      - skilltrackerNet
+
+  skill-tracker-retrieve:
+    container_name: skill-tracker-retrieve
+    hostname: skill-tracker-retrieve
+    image: tthiyagaraja/retrieve
+    build: ./skill-tracker-retrieve
+    restart: always
+    ports:
+      - 5002:5002
+    depends_on:
+      - skill-tracker-api-gateway
+      - skill-tracker-oauth2
+      - mongo
+    networks:
+      - skilltrackerNet
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  mysql:
+    driver: local
+
+networks:
+  skilltrackerNet:
+    driver: bridge

@@ -35,7 +35,7 @@ public class LoginController {
 			@ApiResponse(code = 400, message = "Invalid Login details") })
 	@GetMapping("/name")
 	@PreAuthorize("hasAuthority('ADMIN_PRIVILEGE') or hasAuthority('WRITE_PRIVILEGE') or hasAuthority('READ_PRIVILEGE')")
-	public ResponseEntity<UserLookupResponse> getProfile(UserInput userInput) {
+	public ResponseEntity<UserLookupResponse> validateUser(UserInput userInput) {
 		log.info("Login Credentials= {}", userInput.toString());
 		try {
 			UserEntity userEntity = userRepo.findById(userInput.getUserName()).orElseThrow(
