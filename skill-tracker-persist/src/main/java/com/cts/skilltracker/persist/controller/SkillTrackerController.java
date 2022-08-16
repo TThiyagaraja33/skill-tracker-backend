@@ -38,7 +38,7 @@ public class SkillTrackerController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Profile Created Successfully"),
             @ApiResponse(code = 400, message = "Invalid Profile details")})
     @PostMapping(value = "/engineer/add-profile")
-    @PreAuthorize("hasAuthority('ADMIN_PRIVILEGE')")
+    @PreAuthorize("hasAuthority('ADMIN_PRIVILEGE') or hasAuthority('WRITE_PRIVILEGE')")
     public ResponseDTO createProfile(@Valid @RequestBody ProfileRequest request) {
         log.info("Profile= "+request.toString());
         profileService.createProfile(request);
@@ -49,7 +49,7 @@ public class SkillTrackerController {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "Profile updated Successfully"),
             @ApiResponse(code = 400, message = "Invalid Profile details")})
     @PutMapping(value = "/engineer/update-profile/{id}")
-    @PreAuthorize("hasAuthority('ADMIN_PRIVILEGE')")
+    @PreAuthorize("hasAuthority('ADMIN_PRIVILEGE') or hasAuthority('WRITE_PRIVILEGE')")
     public ResponseEntity<ProfileEntity> updateProfile(@PathVariable String id, @Valid @RequestBody ProfileRequest request) {
         log.info("Profile= "+request.toString());
         return profileService.updateProfile(id, request);

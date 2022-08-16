@@ -3,6 +3,7 @@ package com.cts.skilltracker.persist.util;
 import com.cts.skilltracker.persist.apimodel.ProfileRequest;
 import com.cts.skilltracker.persist.apimodel.SkillRequest;
 import com.cts.skilltracker.persist.apimodel.UserRequest;
+import com.cts.skilltracker.persist.entity.RoleEntity;
 import com.cts.skilltracker.persist.entity.UserEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -44,7 +45,7 @@ public class Test {
 
         }
         
-        UserRequest user = new UserRequest("firstname", "lastname", "emailAddress", "username", "password");
+        UserRequest user = new UserRequest("firstname", "lastname", "emailAddress", "username", "password", "Write");
         UserEntity entity = user.toUser();
         try {
             String str = mapper.writeValueAsString(entity);

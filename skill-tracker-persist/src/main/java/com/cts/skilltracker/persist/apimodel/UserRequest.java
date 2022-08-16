@@ -44,14 +44,22 @@ public class UserRequest {
 	@NotBlank(message = "Password is mandatory")
 	private String password;
 
+	@NotBlank(message = "Role is mandatory")
+	private String roleName;
+
 	public UserEntity toUser() {
 		return UserEntity.builder().firstname(firstname).lastname(lastname).emailAddress(emailAddress)
-				.username(username).password(hashPassword(password)).roles(setRole()).build();
+				.username(username).password(hashPassword(password)).roles(setRole(roleName)).build();
 	}
 
-	private List<RoleEntity> setRole() {
+	private List<RoleEntity> setRole(String roleName) {
 		List<RoleEntity> roles = new ArrayList<>();
-		roles.add(RoleEntity.ADMIN_PRIVILEGE);
+		if ("Admin".equalsIgnoreCase(roleName))
+			roles.add(RoleEntity.ADMIN_PRIVILEGE);
+		else if ("Write".equalsIgnoreCase(roleName))
+			roles.add(RoleEntity.WRITE_PRIVILEGE);
+		else
+			roles.add(RoleEntity.READ_PRIVILEGE);
 		return roles;
 	}
 
