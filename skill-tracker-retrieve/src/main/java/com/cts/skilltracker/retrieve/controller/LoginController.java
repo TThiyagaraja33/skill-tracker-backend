@@ -53,5 +53,5 @@ public class LoginController {
 			return new ResponseEntity<>(new UserLookupResponse(null, safeErrorMessage),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}
+	}	
 }
