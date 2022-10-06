@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "63291ce3-ab41-4c5c-b805-4ed810ea292b",
+		"name": "Skill Tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Profile",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjA2NTAxNTgsInVzZXJfbmFtZSI6InRlc3RVc2VyMTYxIiwiYXV0aG9yaXRpZXMiOlsiQURNSU5fUFJJVklMRUdFIl0sImp0aSI6ImpjYTB1ZFFnZ3lVT2QxQzVWX2V6S0hCVk9tOCIsImNsaWVudF9pZCI6InNraWxsdHJhY2tlckNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImFkbWluIl19.IlGYACI_pcqYVCpSDabF-6EkRXd9Vk2-P9wfngd098U",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"KafkaTest8\",\"associateId\":\"CTSKafkaTest8\",\"emailId\":\"Test@test.com\",\"mobileNo\":\"4512304359\",\"skills\":[{\"skillName\":\"HTML-CSS-JAVASCRIPT\",\"expertiseLevel\":20},{\"skillName\":\"ANGULAR\",\"expertiseLevel\":16},{\"skillName\":\"REACT\",\"expertiseLevel\":15},{\"skillName\":\"SPRING\",\"expertiseLevel\":19},{\"skillName\":\"RESTFUL\",\"expertiseLevel\":19},{\"skillName\":\"HIBERNATE\",\"expertiseLevel\":12},{\"skillName\":\"GIT\",\"expertiseLevel\":16},{\"skillName\":\"DOCKER\",\"expertiseLevel\":17},{\"skillName\":\"JENKINS\",\"expertiseLevel\":14},{\"skillName\":\"AWS\",\"expertiseLevel\":19},{\"skillName\":\"SPOKEN\",\"expertiseLevel\":20},{\"skillName\":\"COMMUNICATION\",\"expertiseLevel\":12},{\"skillName\":\"APTITUDE\",\"expertiseLevel\":12}]}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4000/skill-tracker/api/v1/engineer/add-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"engineer",
+						"add-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Profile",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgzMjg5NjgsInVzZXJfbmFtZSI6InRlc3RVc2VyIiwiYXV0aG9yaXRpZXMiOlsiQURNSU5fUFJJVklMRUdFIl0sImp0aSI6IlltTUxKSGlYSDl1bDRrN3BlSzB5bXFRU293cyIsImNsaWVudF9pZCI6InNraWxsdHJhY2tlckNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImFkbWluIl19.JHmLa_Oqa8eU24PntkpdQVahBsauCdtIsz_xBWI0YkA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"KafkaTest5\",\"associateId\":\"CTSKafkaTest5\",\"emailId\":\"Test@test.com\",\"mobileNo\":\"1234567890\",\"skills\":[{\"skillName\":\"HTML-CSS-JAVASCRIPT\",\"expertiseLevel\":2},{\"skillName\":\"ANGULAR\",\"expertiseLevel\":6},{\"skillName\":\"REACT\",\"expertiseLevel\":5},{\"skillName\":\"Asp.Net Core\",\"expertiseLevel\":19},{\"skillName\":\"RESTFUL\",\"expertiseLevel\":19},{\"skillName\":\"Entity Framework\",\"expertiseLevel\":12},{\"skillName\":\"GIT\",\"expertiseLevel\":16},{\"skillName\":\"DOCKER\",\"expertiseLevel\":17},{\"skillName\":\"JENKINS\",\"expertiseLevel\":14},{\"skillName\":\"Azure\",\"expertiseLevel\":19},{\"skillName\":\"SPOKEN\",\"expertiseLevel\":20},{\"skillName\":\"COMMUNICATION\",\"expertiseLevel\":20},{\"skillName\":\"APTITUDE\",\"expertiseLevel\":20}]}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4000/skill-tracker/api/v1/engineer/delete-profile/CTSKafkaTest5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"engineer",
+						"delete-profile",
+						"CTSKafkaTest5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstname\":\"TestUser161\",\"lastname\":\"TestUser161\",\"emailAddress\":\"test@test.com\",\"username\":\"testUser161\", \"password\":\"testUser161\",\"roleName\":\"Admin\"}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/user/createUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"createUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"firstname\":\"Test123\",\"lastname\":\"Test456\",\"emailAddress\":\"Test123@test.com\",\"username\":\"testUser\", \"password\":\"testUser\"}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/v1/user/updateUser/testUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"updateUser",
+						"testUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"KafkaTest5\",\"associateId\":\"CTSKafkaTest5\",\"emailId\":\"Test@test.com\",\"mobileNo\":\"4512309861\",\"skills\":[{\"skillName\":\"HTML-CSS-JAVASCRIPT\",\"expertiseLevel\":20},{\"skillName\":\"ANGULAR\",\"expertiseLevel\":16},{\"skillName\":\"REACT\",\"expertiseLevel\":15},{\"skillName\":\"SPRING\",\"expertiseLevel\":19},{\"skillName\":\"RESTFUL\",\"expertiseLevel\":19},{\"skillName\":\"HIBERNATE\",\"expertiseLevel\":12},{\"skillName\":\"GIT\",\"expertiseLevel\":16},{\"skillName\":\"DOCKER\",\"expertiseLevel\":17},{\"skillName\":\"JENKINS\",\"expertiseLevel\":14},{\"skillName\":\"AWS\",\"expertiseLevel\":19},{\"skillName\":\"SPOKEN\",\"expertiseLevel\":20},{\"skillName\":\"COMMUNICATION\",\"expertiseLevel\":12},{\"skillName\":\"APTITUDE\",\"expertiseLevel\":12}]}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4000/skill-tracker/api/v1/engineer/update-profile/CTSKafkaTest5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"engineer",
+						"update-profile",
+						"CTSKafkaTest5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjAzMDQxMTQsInVzZXJfbmFtZSI6InRlc3RVc2VyMSIsImF1dGhvcml0aWVzIjpbIkFETUlOX1BSSVZJTEVHRSJdLCJqdGkiOiJCZXVqTmhSRnlNRVhyNUlyX2NkTW1tR0g1dXciLCJjbGllbnRfaWQiOiJza2lsbHRyYWNrZXJDbGllbnQiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiLCJhZG1pbiJdfQ.vuo7zjEdBHPxk5G0wIVM8cSoKt6W0cVWokL19isestg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://3.109.124.67:4000/skill-tracker/api/v1/admin/Id/CTSKafkaTest6",
+					"protocol": "http",
+					"host": [
+						"3",
+						"109",
+						"124",
+						"67"
+					],
+					"port": "4000",
+					"path": [
+						"skill-tracker",
+						"api",
+						"v1",
+						"admin",
+						"Id",
+						"CTSKafkaTest6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTgxNDcwNjUsInVzZXJfbmFtZSI6InRlc3RVc2VyIiwiYXV0aG9yaXRpZXMiOlsiQURNSU5fUFJJVklMRUdFIl0sImp0aSI6IkFhU0xMYkhJTWNJNkR6LW1uR0hONm9rRnlFMCIsImNsaWVudF9pZCI6InNraWxsdHJhY2tlckNsaWVudCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSIsImFkbWluIl19.JGaaFcpVQoZrOK25iXNeUI-479EvyBOWNishSz1Mxdc",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/v1/user/name?userName=testUser&password=testUser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"name"
+					],
+					"query": [
+						{
+							"key": "userName",
+							"value": "testUser"
+						},
+						{
+							"key": "password",
+							"value": "testUser"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Oauth2",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "skilltrackerSecret",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "skilltrackerClient",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "testUser161",
+							"type": "default"
+						},
+						{
+							"key": "password",
+							"value": "testUser161",
+							"type": "default"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:4000/oauth/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
